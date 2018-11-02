@@ -11,31 +11,27 @@ import static org.mockito.Mockito.*;
 
 public class DespetadorTest{
     Despertador despertador;
+    Date dateMock;
+
 
     @Before
     public void setUp(){
-
-        despertador = mock(Despertador.class);
+        dateMock = mock(Date.class);
+        despertador = new Despertador(dateMock);
     }
 
     @Test
     public void testPassouTempoTrue(){
-        Date date = mock(Date.class);
+        when(dateMock.after(any(Date.class))).thenReturn(true);
 
-        when(despertador.passouDoTempo(any(Date.class))).thenReturn(true);
-
-        boolean eita = despertador.antesDoTempo(date);
-
-        assertTrue(eita);
+        assertTrue(despertador.passouDoTempo(new Date()));
     }
 
     @Test
     public void testPassouTempoFalse(){
-        Date date = mock(Date.class);
+        when(dateMock.after(any(Date.class))).thenReturn(false);
 
-        when(despertador.passouDoTempo(any(Date.class))).thenReturn(false);
-
-        assertFalse(despertador.antesDoTempo(date));
+        assertTrue(despertador.passouDoTempo(new Date()));
     }
 
     @Test

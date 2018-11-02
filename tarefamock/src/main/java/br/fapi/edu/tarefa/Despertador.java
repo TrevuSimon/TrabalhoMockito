@@ -6,7 +6,7 @@ public class Despertador {
     private Date time;
 
     public Despertador(Date time) {
-        this.time = new Date();
+        this.time = time;
     }
 
     public Date getTime() {
