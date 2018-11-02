@@ -1,13 +1,10 @@
-package br.edu.fapi.mock;
+package br.edu.fapi.tarefa;
 
-import br.fapi.edu.mock.Despertador;
+import br.fapi.edu.tarefa.Despertador;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.stubbing.OngoingStubbing;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -23,16 +20,18 @@ public class DespetadorTest{
 
     @Test
     public void testPassouTempoTrue(){
-        Date date = new Date();
+        Date date = mock(Date.class);
 
-        OngoingStubbing<Boolean> booleanOngoingStubbing = when(despertador.passouDoTempo(any(Date.class))).thenReturn(true);
+        when(despertador.passouDoTempo(any(Date.class))).thenReturn(true);
 
-        assertTrue(despertador.antesDoTempo(date));
+        boolean eita = despertador.antesDoTempo(date);
+
+        assertTrue(eita);
     }
 
     @Test
     public void testPassouTempoFalse(){
-        Date date = new Date();
+        Date date = mock(Date.class);
 
         when(despertador.passouDoTempo(any(Date.class))).thenReturn(false);
 
@@ -41,7 +40,7 @@ public class DespetadorTest{
 
     @Test
     public void testAntesTempoTrue(){
-        Date date = new Date();
+        Date date = mock(Date.class);
 
         when(despertador.antesDoTempo(any(Date.class))).thenReturn(true);
 
@@ -51,7 +50,7 @@ public class DespetadorTest{
 
     @Test
     public void testAntesTempoFalse(){
-        Date date = new Date();
+        Date date = mock(Date.class);
 
         when(despertador.antesDoTempo(any(Date.class))).thenReturn(false);
 
@@ -60,7 +59,7 @@ public class DespetadorTest{
 
     @Test
     public void testeTrocarTempo(){
-        Date date = new Date();
+        Date date = mock(Date.class);
 
         assertFalse(despertador.antesDoTempo(date));
     }
