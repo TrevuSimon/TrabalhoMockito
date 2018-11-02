@@ -31,32 +31,26 @@ public class DespetadorTest{
     public void testPassouTempoFalse(){
         when(dateMock.after(any(Date.class))).thenReturn(false);
 
-        assertTrue(despertador.passouDoTempo(new Date()));
+        assertFalse(despertador.passouDoTempo(new Date()));
     }
 
     @Test
     public void testAntesTempoTrue(){
-        Date date = mock(Date.class);
+        when(dateMock.before(any(Date.class))).thenReturn(true);
 
-        when(despertador.antesDoTempo(any(Date.class))).thenReturn(true);
-
-        assertTrue(despertador.antesDoTempo(date));
+        assertTrue(despertador.antesDoTempo(new Date()));
     }
 
 
     @Test
     public void testAntesTempoFalse(){
-        Date date = mock(Date.class);
+    	when(dateMock.before(any(Date.class))).thenReturn(false);
 
-        when(despertador.antesDoTempo(any(Date.class))).thenReturn(false);
-
-        assertFalse(despertador.antesDoTempo(date));
+        assertFalse(despertador.antesDoTempo(new Date()));
     }
 
     @Test
     public void testeTrocarTempo(){
-        Date date = mock(Date.class);
-
-        assertFalse(despertador.antesDoTempo(date));
+        assertEquals(despertador.trocarTempo(dateMock),"trocado com sucesso");
     }
 }
